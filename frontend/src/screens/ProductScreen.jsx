@@ -8,7 +8,7 @@ import { useGetProductDetailsQuery } from '../slices/productSlice';
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
-  
+
   const {
     data: product,
     isLoading,
@@ -34,6 +34,8 @@ const ProductScreen = () => {
   //     setCartItems([...cartItems, { ...product, qty: 1 }]);
   //   }
 
+
+  
   //   console.log(cartItems)
   // };
 
