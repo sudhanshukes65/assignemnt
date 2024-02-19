@@ -62,13 +62,13 @@ const ProductScreen = () => {
                   </Row>
                   <Row>
                     <Col>Discount :</Col>
-                    <Col>
+                    <Col style={{color: 'red'}}>
                       <strong>{product.discountPercentage}%</strong>
                     </Col>
                   </Row>
                   <Row>
                     <Col>Final price :</Col>
-                    <Col>
+                    <Col style={{color: 'green'}}>
                       
                       <strong>${(product.price - product.price*product.discountPercentage/100).toFixed(2)}</strong>
                     </Col>
@@ -89,13 +89,13 @@ const ProductScreen = () => {
                   </Row>
                   <Row>
                     <Col>Discount :</Col>
-                    <Col>
+                    <Col style={{color: 'red'}}>
                       <strong>{product.discountPercentage}%</strong>
                     </Col>
                   </Row>
                   <Row>
                     <Col>Final price :</Col>
-                    <Col>
+                    <Col style={{color: 'green'}}>
                       
                       <strong>${(product.price - product.price*product.discountPercentage/100).toFixed(2)}</strong>
                     </Col>
