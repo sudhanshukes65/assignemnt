@@ -44,7 +44,18 @@ const HomeScreen = () => {
       ) : (
         <>
           <h1>Latest Products</h1>
-          <Form.Group controlId="priceFilter">
+          <div className='d-flex justify-content-between'>
+          
+          <Form.Group controlId="searchTerm">
+            <Form.Label>Search Products:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter product name"
+              value={searchTerm}
+              onChange={handleSearchTermChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="priceFilter" style={{maxWidth : '120px'}}>
             <Form.Label>Filter by Price:</Form.Label>
             <Form.Control
               as="select"
@@ -59,15 +70,7 @@ const HomeScreen = () => {
               <option value="200">Under $200</option>
             </Form.Control>
           </Form.Group>
-          <Form.Group controlId="searchTerm">
-            <Form.Label>Search Products:</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter product name"
-              value={searchTerm}
-              onChange={handleSearchTermChange}
-            />
-          </Form.Group>
+          </div>
           <Row>
             {filteredProducts.map((product) => (
               <Col key={product.id} sm={12} md={6} lg={4} xl={3}>
