@@ -6,18 +6,20 @@ import { useEffect, useState } from 'react';
 const HomeScreen = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [priceFilter, setPriceFilter] = useState("");
+  const [priceRange, setPriceRange] = useState({ min: '', max: '' });
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     let filtered = products?.products || [];
 
-    // Apply price filter
-    if (priceFilter) {
-      filtered = filtered.filter(product => product.price <= parseInt(priceFilter));
+
+    if (priceRange.min !== '' && priceRange.max !== '') {
+      filtered = filtered.filter(product =>
+        product.price >= parseInt(priceRange.min) && product.price <= parseInt(priceRange.max)
+      );
     }
 
-    // Apply search filter
+
     if (searchTerm) {
       filtered = filtered.filter(product =>
         product.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -25,10 +27,11 @@ const HomeScreen = () => {
     }
 
     setFilteredProducts(filtered);
-  }, [products, priceFilter, searchTerm]);
+  }, [products,priceRange, searchTerm]);
 
-  const handlePriceFilterChange = (e) => {
-    setPriceFilter(e.target.value);
+  const handlePriceRangeChange = (e) => {
+    const { name, value } = e.target;
+    setPriceRange({ ...priceRange, [name]: value });
   };
 
   const handleSearchTermChange = (e) => {
@@ -55,20 +58,22 @@ const HomeScreen = () => {
               onChange={handleSearchTermChange}
             />
           </Form.Group>
-          <Form.Group controlId="priceFilter" style={{maxWidth : '120px'}}>
-            <Form.Label>Filter by Price:</Form.Label>
+          <Form.Group controlId="priceRange">
+            <Form.Label>Filter by Price Range:</Form.Label>
             <Form.Control
-              as="select"
-              value={priceFilter}
-              onChange={handlePriceFilterChange}
-            >
-              <option value="">All</option>
-              <option value="20">Under $20</option>
-              <option value="30">Under $30</option>
-              <option value="50">Under $50</option>
-              <option value="100">Under $100</option>
-              <option value="200">Under $200</option>
-            </Form.Control>
+              type="number"
+              placeholder="Min"
+              name="min"
+              value={priceRange.min}
+              onChange={handlePriceRangeChange}
+            />
+            <Form.Control
+              type="number"
+              placeholder="Max"
+              name="max"
+              value={priceRange.max}
+              onChange={handlePriceRangeChange}
+            />
           </Form.Group>
           </div>
           <Row>
