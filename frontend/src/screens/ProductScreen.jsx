@@ -41,7 +41,6 @@ const ProductScreen = () => {
         ) : (
           <Row>
           <Col md={5}>
-            {console.log(product)}
             <Image src={product.images[0]} alt={product.name} fluid />
           </Col>
           <Col md={4}>
