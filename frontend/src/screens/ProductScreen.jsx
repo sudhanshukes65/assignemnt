@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button ,Form} from 'react-bootstrap';
 import Rating from '../components/Rating';
-import axios from 'axios';
+
 import { useGetProductDetailsQuery } from '../slices/productSlice';
 import { addToCart } from '../slices/cartSlice';
 import { useDispatch } from 'react-redux';
